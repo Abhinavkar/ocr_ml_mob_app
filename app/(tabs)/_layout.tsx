@@ -15,21 +15,20 @@ export default function TabsLayout() {
         }}/>
         <Tabs.Screen name= 'CameraScreen' 
           options={{
-          headerShown: false,
+         
           headerLeft:()=> <></>,
           tabBarIcon: ({focused, color, size}) => (
             <Ionicons name="camera-outline" size={32}  color={color}  />
          )       }}/>
         
-        <Tabs.Screen name= 'evaluate'   
+        {/* <Tabs.Screen name= 'evaluate'   
         options={{
-        headerTitle: 'Evaluate', 
-        headerLeft:()=> <></>,
+        headerShown: false,
         tabBarIcon: ({focused, color, size}) => (
           <Ionicons name="code-slash" size={32}  color={color} />
         )
       
-        }}/>
+        }}/> */}
           <Tabs.Screen name= 'profile' 
       options={{
         headerShown: false,

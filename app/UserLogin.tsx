@@ -1,6 +1,6 @@
 import React, { useState ,useEffect} from 'react';
 import { View, Text, TextInput, Button, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { Link, useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AdminLogo from '../assets/images/blacklogo.png';
 import * as ImagePicker from 'expo-image-picker';
@@ -14,8 +14,7 @@ const UserLogin = () => {
       }
       );
       ImagePicker.requestMediaLibraryPermissionsAsync().then((res) => {
-        console.log(res
-        );
+        console.log(res);
       }
       );
       ImagePicker.getCameraPermissionsAsync().then((res) => {
@@ -30,17 +29,14 @@ const UserLogin = () => {
     checkPermissions();
   }, []);
 
-
-
-
   const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  
   const handleLogin = async () => {
     if (username && password) {
       try {
-        const response = await fetch('http://192.168.21.56:8000/api/auth/login/', {
+        const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/api/auth/login/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -54,13 +50,20 @@ const UserLogin = () => {
 
         const data = await response.json();
         // await AsyncStorage.setItem('token', data.access); // Store the token
-        console.log(data);
-        navigation.navigate('(tabs)'); // Navigate to dashboard
+        await AsyncStorage.setItem('org_id',data.organization_id)
+      
+        await AsyncStorage.setItem('user_data', JSON.stringify(data)); 
+
+        
+        setTimeout(() => {
+          alert('Login Successful');
+          navigation.navigate('(tabs)'); 
+        }, 2000);
+       
       } catch (error) {
         console.error(error);
       }
     }
-  
   };
 
   return (
@@ -89,6 +92,8 @@ const UserLogin = () => {
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
+        <Text>If You are a admin login through web portal</Text>
+        {/* <Link href='UserRegister'><Text>Not a User? Login</Text></Link> */}
     </View>
   );
 };
