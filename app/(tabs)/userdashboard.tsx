@@ -275,6 +275,7 @@ const UserDashboard = () => {
           <Picker
             selectedValue={organizationSelected}
             style={styles.input}
+            itemStyle={styles.pickerItem}
             onValueChange={(itemValue) => setOrganizationSelected(itemValue)}
           >
             <Picker.Item label="Select Organization" value="" />
@@ -284,12 +285,12 @@ const UserDashboard = () => {
           </Picker>
         </View>
 
-       
         <View style={styles.formGroup}>
           <Text style={styles.label}>Class</Text>
           <Picker
             selectedValue={classSelected}
             style={styles.input}
+            itemStyle={styles.pickerItem}
             onValueChange={(itemValue) => setClassSelected(itemValue)}
           >
             <Picker.Item label="Select Class" value="" />
@@ -303,6 +304,7 @@ const UserDashboard = () => {
           <Picker
             selectedValue={sectionSelected}
             style={styles.input}
+            itemStyle={styles.pickerItem}
             onValueChange={(itemValue) => setSectionSelected(itemValue)}
           >
             <Picker.Item label="Select Section" value="" />
@@ -316,6 +318,7 @@ const UserDashboard = () => {
           <Picker
             selectedValue={subjectSelected}
             style={styles.input}
+            itemStyle={styles.pickerItem}
             onValueChange={(itemValue) => setSubjectSelected(itemValue)}
           >
             <Picker.Item label="Select Subject" value="" />
@@ -329,6 +332,7 @@ const UserDashboard = () => {
           <Picker
             selectedValue={examId}
             style={styles.input}
+            itemStyle={styles.pickerItem}
             onValueChange={(itemValue) => setExamId(itemValue)}
           >
             <Picker.Item label="Select Exam ID" value="" />
@@ -344,6 +348,7 @@ const UserDashboard = () => {
             value={rollNo}
             onChangeText={setRollNo}
             placeholder="Enter Roll No"
+            placeholderTextColor="#666"
           />
         </View>
         <View style={styles.formGroup}>
@@ -377,7 +382,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(244, 247, 254)',
   },
   title: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: '700',
     color: 'rgb(43, 54, 116)',
     marginBottom: 20,
@@ -388,16 +393,20 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 18,
-    color: 'rgb(82, 82, 82)',
+    color: 'rgb(43, 43, 43)', // Darker color for better visibility
     marginBottom: 5,
   },
   input: {
     width: '100%',
-    padding: 8,
-    borderWidth: 1,
-    borderColor: 'rgb(201, 201, 201)',
+    height:150,
     borderRadius: 5,
-    boxSizing: 'border-box',
+    border: '1px solid rgb(43, 43, 43)', // Darker border color for input fields,
+    borderColor: 'rgb(43, 43, 43)', // Darker border color for input fields
+    backgroundColor: 'rgb(244, 247, 254)', // Lighter background color for input fields
+    color: 'black', // Darker text color for input fields
+  },
+  pickerItem: {
+    color: 'black', // Set picker item text color to black
   },
   logo: {
     height: 100,
@@ -433,7 +442,7 @@ const styles = StyleSheet.create({
   },
   pdfName: {
     fontSize: 14,
-    color: 'rgb(82, 82, 82)',
+    color: 'rgb(43, 43, 43)', // Darker color for better visibility
     marginTop: 5,
   },
 });

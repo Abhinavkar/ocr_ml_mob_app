@@ -1,19 +1,23 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
 import UserLogin from './UserLogin';
 import UserDashboard from './(tabs)/userdashboard';
-import CameraScreen from './(tabs)/CameraScreen';
+import Profile from './(tabs)/profile';
+import { ThemeProvider } from './ThemeContext';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
+    <ThemeProvider>
+ 
       <Stack.Navigator initialRouteName="UserLogin">
-        <Stack.Screen name="UserLogin" component={UserLogin} options={{ headerShown: false }} />
+        <Stack.Screen name="UserLogin" component={UserLogin} />
         <Stack.Screen name="UserDashboard" component={UserDashboard} />
-        <Stack.Screen name="CameraScreen" component={CameraScreen} />
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
+   
+  </ThemeProvider>
     
   );
 };
